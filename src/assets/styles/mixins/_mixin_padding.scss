@@ -1,0 +1,46 @@
+/**
+ * Generate padding direction..
+ *
+ * @param $value - margin value
+ * @param $direction - margin direction
+ * @param $unit - units - default px
+ * @param $prefix - mixin prefix
+ */
+@mixin generatorPaddingDirection($value, $direction: "", $unit: px, $prefix: "") {
+  $postfix: "a";
+
+  @if $direction == "right" {
+    $postfix: "r";
+  } @else if $direction == "left" {
+    $postfix: "l";
+  } @else if $direction == "top" {
+    $postfix: "t";
+  } @else if $direction == "bottom" {
+    $postfix: "b";
+  }
+
+  $valueName: $value;
+  @if $value < 0 {
+    $valueName: $value * -1;
+  }
+
+  .ui-#{$prefix}p#{$postfix}_#{$valueName} {
+    @if $direction == "" {
+      padding: #{$value}#{$unit} !important;
+    } @else {
+      padding-#{$direction}: #{$value}#{$unit} !important;
+    }
+  }
+}
+
+/**
+ * Generates padding for positive directions.
+ *
+ * @param $value - margin value
+ * @param $unit - units - default px
+ */
+@mixin generatorPaddingAllDirections($value, $unit: px) {
+  @each $direction in "", right, left, top, bottom {
+    @include generatorPaddingDirection($value, $direction, $unit);
+  }
+}

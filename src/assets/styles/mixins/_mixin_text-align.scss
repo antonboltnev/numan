@@ -1,0 +1,10 @@
+/**
+ * Text align
+ *
+ * @param $direction - direction
+ */
+@mixin generatorTextAlign($direction) {
+    .ui-ta_#{$direction} {
+        text-align: $direction;
+    }
+}

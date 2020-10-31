@@ -1,0 +1,83 @@
+/**
+ * Generate padding for all resolutions
+ *
+ * @param $name - column name
+ * @param $size - column width
+ */
+@mixin generatorGridCol($name, $size) {
+    .ui-grid > .ui-grid__col.ui-grid__col_#{$name} {
+        flex: 0 0 $size + 0%;
+        max-width: $size + 0%;
+        padding: 15px;
+    }
+}
+
+/**
+ * Generate padding for all resolutions
+ *
+ * @param $sizes - col width
+ * @param $prefix_name - name prefix
+ */
+@mixin generatorGridCols($sizes, $prefix_name: "") {
+    @each $size in $sizes {
+        $name: $size;
+        $width: $size;
+
+        @if ($prefix_name != "") {
+            $name: $prefix_name + "-" + $size;
+        }
+
+        @if $size == 33 {
+            $width: 33.333;
+        }
+        @else if $size == 66 {
+            $width: 66.666;
+        }
+
+        @include generatorGridCol($name, $width);
+    }
+}
+
+/**
+ * Cols for width < 576px
+ *
+ * @param $sizes - col width
+ */
+@mixin generatorGridColsXs($sizes) {
+    @media (max-width: 576px) {
+        @include generatorGridCols($sizes, "xs");
+    }
+}
+
+/**
+ * Cols for width > 576px
+ *
+ * @param $sizes - col width
+ */
+@mixin generatorGridColsSm($sizes) {
+    @media (min-width: 576px) {
+        @include generatorGridCols($sizes, "sm");
+    }
+}
+
+/**
+ * Cols for width > 768px
+ *
+ * @param $sizes - col width
+ */
+@mixin generatorGridColsMd($sizes) {
+    @media (min-width: 768px) {
+        @include generatorGridCols($sizes, "md");
+    }
+}
+
+/**
+ * Cols for width > 992px
+ *
+ * @param $sizes - col width
+ */
+@mixin generatorGridColsLg($sizes) {
+    @media (min-width: 992px) {
+        @include generatorGridCols($sizes, "lg");
+    }
+}

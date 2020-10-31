@@ -1,0 +1,97 @@
+@import "variables";
+
+// grid
+@import "src/assets/styles/mixins/mixin_grid";
+@include generatorGridCols((10, 15, 20, 25, 30, 33, 45, 66, 50, 75, 100));
+@include generatorGridColsXs((10, 15, 20, 25, 30, 33, 45, 66, 50, 75, 100));
+@include generatorGridColsSm((10, 15, 20, 25, 30, 33, 45, 66, 50, 75, 100));
+@include generatorGridColsMd((10, 15, 20, 25, 30, 33, 45, 66, 50, 75, 100));
+@include generatorGridColsLg((10, 15, 20, 25, 30, 33, 45, 66, 50, 75, 100));
+
+//text align
+@import "src/assets/styles/mixins/mixin_text-align";
+@include generatorTextAlign(center);
+@include generatorTextAlign(right);
+@include generatorTextAlign(left);
+
+//margin
+@import "src/assets/styles/mixins/mixin_margin";
+@include generatorMarginAllDirections(0);
+@include generatorMarginAllDirections(5);
+@include generatorMarginAllDirections(10);
+@include generatorMarginAllDirections(15);
+@include generatorMarginAllDirections(20);
+@include generatorMarginAllDirections(30);
+
+// padding
+@import "src/assets/styles/mixins/mixin_padding";
+@include generatorPaddingAllDirections(0);
+@include generatorPaddingAllDirections(5);
+@include generatorPaddingAllDirections(15);
+@include generatorPaddingAllDirections(25);
+
+
+body, html {
+    font-family: "Source Sans Pro", sans-serif;
+    background: #f2f2f2;
+    color: #2D2D2D;
+}
+
+*, :after, :before {
+    box-sizing: border-box;
+}
+
+//flex positioning
+.row {
+    display: flex;
+}
+.wrap-reverse {
+    flex-wrap: wrap-reverse !important;
+}
+.justify-around {
+    justify-content: space-around;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-evenly {
+    justify-content: space-evenly;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-end {
+    justify-content: flex-end;
+}
+
+.justify-start {
+    justify-content: start;
+}
+
+.align-baseline {
+    align-items: baseline;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.align-end {
+    align-items: end;
+}
+
+.align-flex-end {
+    align-items: flex-end;
+}
+
+.align-flex-start {
+    align-items: flex-start;
+}
+
+.align-start {
+    align-items: start;
+}

@@ -1,0 +1,58 @@
+/**
+ * Generate margin direction.
+ *
+ * @param $value - margin value
+ * @param $direction - margin direction
+ * @param $unit - units - default px
+ * @param $prefix - mixin prefix
+ */
+@mixin generatorMarginDirection($value, $direction: "", $unit: px, $prefix: "") {
+  $postfix: "a";
+
+  @if $direction == "right" {
+    $postfix: "r";
+  } @else if $direction == "left" {
+    $postfix: "l";
+  } @else if $direction == "top" {
+    $postfix: "t";
+  } @else if $direction == "bottom" {
+    $postfix: "b";
+  }
+
+  $valueName: $value;
+  @if $value < 0 {
+    $valueName: $value * -1;
+  }
+
+  .ui-#{$prefix}m#{$postfix}_#{$valueName} {
+    @if $direction == "" {
+      margin: #{$value}#{$unit} !important;
+    } @else {
+      margin-#{$direction}: #{$value}#{$unit} !important;
+    }
+  }
+}
+
+/**
+ * Generates margin for positive directions.
+ *
+ * @param $value - margin value
+ * @param $unit - units - default px
+ */
+@mixin generatorMarginAllDirections($value, $unit: px) {
+  @each $direction in "", right, left, top, bottom {
+    @include generatorMarginDirection($value, $direction, $unit);
+  }
+}
+
+/**
+ * Generates margin for negative directions.
+ *
+ * @param $value - margin value
+ * @param $unit - units - default px
+ */
+@mixin generatorInversionMarginAllDirections($value, $unit: px) {
+  @each $direction in "", right, left, top, bottom {
+    @include generatorMarginDirection($value * -1, $direction, $unit, i);
+  }
+}
