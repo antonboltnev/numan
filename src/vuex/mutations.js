@@ -6,7 +6,8 @@ export default {
   },
   SET_PRODUCT_DATA(state, products) {
     state.products = products;
-    state.products.data.sort(function(a, b){
+    //sorting products by name alphabetic
+    state.products.data.sort((a, b) => {
       if(a.attributes.name < b.attributes.name) { return -1; }
       if(a.attributes.name > b.attributes.name) { return 1; }
       return 0;
@@ -24,5 +25,8 @@ export default {
         item.selected = true;
       }
     })
+  },
+  SET_FLOW_DATA_TO_STORE(state, { key, value }) {
+    state.totalPathData[key] = value;
   }
 }

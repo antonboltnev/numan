@@ -5,6 +5,8 @@ import router from "@/router";
 import 'material-design-icons-iconfont'
 import "./assets/styles/styles.scss"
 
+import "@/plugins/vee-validate"
+
 Vue.config.productionTip = false
 
 

@@ -21,7 +21,7 @@ export default {
       "setFlowEvent"
     ]),
     toCategories() {
-      this.setFlowEvent( "user-started-flow")
+      this.setFlowEvent( {event: "user-started-flow", payload: {page: 'Home'} })
       .then(() => {
         this.$router.push({ name: 'Categories' })
       })

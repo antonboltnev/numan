@@ -1,28 +1,36 @@
 <template>
-  <ui-grid class='UiTextfield align-center'>
+  <ui-grid
+      class='UiTextfield align-center ui-ma_0'
+      :class="{ 'UiTextfield__has_error': $props.errors.length > 0 }"
+  >
     <ui-grid-col size-w="auto">
       <input
-        :value="modelValue"
+        :value="value"
         :bind="$attrs"
-        :placeholder="placeholder"
-        @input="$emit('update:modelValue', $event.target.value)"
+        :placeholder="$props.placeholder"
+        @input="$emit('input', $event.target.value)"
       >
     </ui-grid-col>
     <ui-grid-col class="row justify-around" size-w="15" size-w-xs="25">
       <i
-        class="material-icons"
-        v-if="modelValue"
-        @click="$emit('search')"
-      >
-        search
-      </i>
-      <i
-        v-if="modelValue"
+        v-if="value"
         class="material-icons"
         @click="$emit('clear')"
       >
         clear
       </i>
+    </ui-grid-col>
+    <ui-grid-col size-w="100">
+      <div
+          class="UiTextfield__messages"
+          :class="{
+        'UiTextfield__messages_error': $props.errors.length > 0
+      }"
+      >
+        <small>
+          {{ $props.errors.join(", ") }}
+        </small>
+      </div>
     </ui-grid-col>
   </ui-grid>
 </template>
@@ -31,14 +39,18 @@
   export default {
     name: "UiTextfield",
     props: {
-      modelValue: {
+      value: {
         type: [String, Number],
         default: ""
       },
       placeholder: {
         type: String,
         default: ""
-      }
+      },
+      errors: {
+        type: Array,
+        default: () => []
+      },
     }
   }
 </script>
@@ -47,6 +59,7 @@
   .UiTextfield {
     border-radius: 10px;
     border: solid 1px #b9b9b9;
+    position: relative;
     & > .ui-grid__col {
       padding: 0 !important;
     }
@@ -66,6 +79,16 @@
       color: #b3b3b3;
       position: relative;
       top: 3px;
+    }
+
+    &__messages {
+      position: absolute;
+      left: 5px;
+      color: red;
+    }
+
+    &__has_error {
+      border-color: red;
     }
   }
 </style>

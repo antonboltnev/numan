@@ -1,6 +1,6 @@
 <template>
   <div class='Categories'>
-    <ui-grid>
+    <ui-grid class="ui-ta_center">
       <ui-grid-col size-w="auto">
         <h1>Choose category below:</h1>
       </ui-grid-col>
@@ -9,7 +9,8 @@
       <ui-grid-col
           size-w="33"
           v-for="category in products.data"
-          :key="category.id">
+          :key="category.id"
+      >
         <ui-card
             :class="{selected: category.selected}"
             @click.native="selectCategory(category)"
@@ -29,7 +30,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex"
+import { mapActions, mapState, mapMutations } from "vuex"
 
 export default {
   name: "Categories",
@@ -47,11 +48,27 @@ export default {
         "setCategory",
         "setFlowEvent"
     ]),
+    ...mapMutations([
+       "SET_FLOW_DATA_TO_STORE"
+    ]),
     selectCategory(category) {
-      this.setCategory(category);
+      this.setCategory(category)
+      .then(() => {
+        this.SET_FLOW_DATA_TO_STORE({ key: "category", value: category })
+      })
     },
     toProductList() {
-      this.setFlowEvent( "user-selected-category")
+      let selectedCategory = this.products.data.find(item => item.selected);
+      this.setFlowEvent(
+            {
+              event: "user-selected-category",
+              payload: {
+                attributes: {
+                  category: selectedCategory.attributes.name
+                }
+              }
+            }
+          )
         .then(() => {
           this.$router.push({ name: 'ProductList' })
         })

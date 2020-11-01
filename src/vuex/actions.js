@@ -19,15 +19,13 @@ export default {
   setCategory({ commit }, category) {
     commit("SELECT_CATEGORY", category);
   },
-  setFlowEvent(context, event) {
+  setFlowEvent(context, { event, payload }) {
     if (!context.state.userId) {
       context.dispatch("generateUserId");
     }
     return axios.post(baseUrl + "v1/events", {
       user_id: context.state.userId,
-      data: {
-        type: event
-      },
+      data: payload,
       type: event
     })
       .then(res => {
