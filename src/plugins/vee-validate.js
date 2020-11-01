@@ -28,17 +28,6 @@ setInteractionMode("blur", () => {
 });
 
 // rules
-extend("emptyAddress", value => {
-  if (!value) return "Поле {_field_} должно быть заполнено!";
-  if (typeof value === "string") {
-    return true;
-  } else if (typeof value === "object" && value["kladr"] !== null) {
-    return true;
-  }
-  if (!value.city && !value.settlement && !value.area)
-    return "Поле {_field_} должно быть заполнено!";
-});
-
 extend("required", {
   ...required
 });

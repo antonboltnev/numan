@@ -1,5 +1,5 @@
 <template>
-  <div class='Main ui-ta_center'>
+  <div class="Main ui-ta_center">
     <h1>Welcome dear visitor!</h1>
     <ui-grid class="row justify-center">
       <ui-grid-col size-w="50">
@@ -17,17 +17,17 @@ import { mapActions } from "vuex";
 export default {
   name: "Main",
   methods: {
-    ...mapActions([
-      "setFlowEvent"
-    ]),
+    ...mapActions(["setFlowEvent"]),
     toCategories() {
-      this.setFlowEvent( {event: "user-started-flow", payload: {page: 'Home'} })
-      .then(() => {
-        this.$router.push({ name: 'Categories' })
-      })
-    }
-  }
-}
+      this.setFlowEvent({
+        event: "user-started-flow",
+        payload: { page: "Home" },
+      }).then(() => {
+        this.$router.push({ name: "Categories" });
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss"></style>

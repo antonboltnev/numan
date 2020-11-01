@@ -13,7 +13,7 @@ export default {
 <style lang="scss">
 .MainLayout {
   max-width: 900px;
-  margin: 100px auto 0;
+  margin: 0 auto;
   padding: $paddingContainer;
   background: #f9f9f9;
   box-shadow: 0 0 11px 1px #d6d6d6;

@@ -1,5 +1,5 @@
 <template>
-  <div class='ThankYouPage'>
+  <div class="ThankYouPage">
     <ui-grid>
       <ui-grid-col size-w="100">
         <h1 class="ui-ta_center">Thank you for the order!</h1>
@@ -15,8 +15,11 @@
 
 <script>
 export default {
-  name: "ThankYouPage"
-}
+  name: "ThankYouPage",
+};
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.ThankYouPage {
+}
+</style>
