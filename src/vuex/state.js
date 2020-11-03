@@ -5,6 +5,6 @@ export default {
     category: null,
     selectedProduct: null,
     productVariant: null,
-    userData: null
-  }
-}
+    userData: null,
+  },
+};

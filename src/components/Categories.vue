@@ -40,21 +40,18 @@ import { mapActions, mapState, mapMutations } from "vuex";
 export default {
   name: "Categories",
   data: () => ({
-    dataLoaded: false,
     noCategorySelected: false,
   }),
   computed: {
     ...mapState({
-      products: (state) => state.products,
+      products: state => state.products,
     }),
   },
   methods: {
     ...mapActions(["fetchProducts", "setCategory", "setFlowEvent"]),
     ...mapMutations(["SET_FLOW_DATA_TO_STORE"]),
     selectCategory(category) {
-      this.setCategory(category).then(() => {
-        this.SET_FLOW_DATA_TO_STORE({ key: "category", value: category });
-      });
+      this.setCategory(category);
     },
     toProductList() {
       let selectedCategory = this.products.data.find((item) => item.selected);
