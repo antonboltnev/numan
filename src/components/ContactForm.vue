@@ -38,9 +38,11 @@
           </validation-provider>
         </ui-grid-col>
         <ui-grid-col size-w="100">
+<!--          The regex for phone is simple for testing. But if we need a real phone validation, change the regex below
+ to (\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$ for example.-->
           <validation-provider
             v-slot="{ errors }"
-            :rules="{ required: true }"
+            :rules="{ required: true, regex: /^[0-9]/ }"
             name="Phone"
             mode="eager"
           >

@@ -2,7 +2,7 @@ import "@vue/test-utils";
 import { testFactory } from "@/utilites/factory";
 import ProductList from "@/components/ProductList";
 
-describe("Categories.vue", () => {
+describe("ProductList.vue", () => {
   const factory = () => {
     const state = {
       products: {

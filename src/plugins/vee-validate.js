@@ -8,6 +8,7 @@ import {
 } from "vee-validate";
 import {
   required,
+  regex,
   email
 } from "vee-validate/dist/rules";
 import en from "vee-validate/dist/locale/en.json"
@@ -26,6 +27,10 @@ setInteractionMode("blur", () => {
 // rules
 extend("required", {
   ...required
+});
+
+extend("regex", {
+  ...regex
 });
 
 extend("email", {

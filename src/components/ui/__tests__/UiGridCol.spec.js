@@ -2,7 +2,7 @@ import { mount } from "@vue/test-utils";
 import UiGridCol from "@/components/ui/UiGridCol";
 import { stubComponent } from "@/utilites/factory";
 
-describe("ui-grid-col", () => {
+describe("UiGridCol", () => {
   function factory({ props, slots } = {}) {
     return mount(UiGridCol, {
       propsData: props || {},

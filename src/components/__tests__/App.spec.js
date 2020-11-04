@@ -2,7 +2,7 @@ import "@vue/test-utils";
 import { testFactory } from "@/utilites/factory";
 import App from "@/App";
 
-describe("Categories.vue", () => {
+describe("App.vue", () => {
   const factory = () => {
     const state = {
       error: [],

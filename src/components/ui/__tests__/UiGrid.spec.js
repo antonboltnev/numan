@@ -2,7 +2,7 @@ import { mount } from "@vue/test-utils";
 import UiGrid from "@/components/ui/UiGrid";
 import { stubComponent } from "@/utilites/factory";
 
-describe("ui-grid", () => {
+describe("UiGrid", () => {
   function factory({ slots } = {}) {
     return mount(UiGrid, {
       slots: slots || {}

@@ -28,3 +28,9 @@ export default {
   },
 };
 </script>
+
+<style>
+#app {
+  margin-top: 100px;
+}
+</style>
