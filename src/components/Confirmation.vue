@@ -129,7 +129,7 @@
     </ui-grid>
     <ui-grid class="row justify-center">
       <ui-grid-col size-w="50">
-        <ui-btn @click="toConfirmationPage">
+        <ui-btn @click="toTYPage">
           <span>Pay now</span>
         </ui-btn>
       </ui-grid-col>
@@ -143,13 +143,13 @@ import { mapActions, mapState } from "vuex";
 export default {
   name: "Confirmation",
   computed: {
-    ...mapState({
+    ...mapState("CommonStore", {
       totalPathData: (state) => state.totalPathData,
     }),
   },
   methods: {
-    ...mapActions(["setFlowEvent"]),
-    toConfirmationPage() {
+    ...mapActions("CommonStore", ["setFlowEvent"]),
+    toTYPage() {
       this.setFlowEvent({
         event: "user-submitted-order",
         payload: {

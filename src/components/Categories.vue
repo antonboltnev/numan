@@ -26,9 +26,6 @@
         <ui-btn @click="toProductList">
           <span>Next</span>
         </ui-btn>
-        <p v-if="noCategorySelected" class="Categories__error_message">
-          Please choose category!
-        </p>
       </ui-grid-col>
     </ui-grid>
   </div>
@@ -39,24 +36,29 @@ import { mapActions, mapState, mapMutations } from "vuex";
 
 export default {
   name: "Categories",
-  data: () => ({
-    noCategorySelected: false,
-  }),
   computed: {
-    ...mapState({
-      products: state => state.products,
+    ...mapState("CommonStore", {
+      products: (state) => state.products,
     }),
   },
   methods: {
-    ...mapActions(["fetchProducts", "setCategory", "setFlowEvent"]),
-    ...mapMutations(["SET_FLOW_DATA_TO_STORE"]),
+    ...mapActions("CommonStore", [
+      "fetchProducts",
+      "setCategory",
+      "setFlowEvent",
+    ]),
+    ...mapMutations("CommonStore", ["SET_FLOW_DATA_TO_STORE"]),
+    ...mapMutations("Notifications", ["ADD_ITEM_NOTIFICATION"]),
     selectCategory(category) {
       this.setCategory(category);
     },
     toProductList() {
       let selectedCategory = this.products.data.find((item) => item.selected);
       if (!selectedCategory) {
-        this.noCategorySelected = true;
+        this.ADD_ITEM_NOTIFICATION({
+          type: "error",
+          message: "Please select category! -_-"
+        });
         return;
       }
       this.setFlowEvent({
@@ -68,12 +70,11 @@ export default {
         },
       }).then(() => {
         this.$router.push({ name: "ProductList" });
-        this.noCategorySelected = false;
       });
     },
   },
   mounted() {
-    if (!this.products.data) {
+    if (!this.products.data.length) {
       this.fetchProducts();
     }
   },
@@ -96,10 +97,6 @@ export default {
       right: 0;
       left: 0;
     }
-  }
-  &__error_message {
-    color: red;
-    text-align: center;
   }
 }
 </style>

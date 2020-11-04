@@ -8,11 +8,7 @@ import {
 } from "vee-validate";
 import {
   required,
-  max_value,
-  regex,
-  min_value,
-  min,
-  max
+  email
 } from "vee-validate/dist/rules";
 import en from "vee-validate/dist/locale/en.json"
 
@@ -32,22 +28,6 @@ extend("required", {
   ...required
 });
 
-extend("max_value", {
-  ...max_value
-});
-
-extend("regex", {
-  ...regex
-});
-
-extend("min_value", {
-  ...min_value
-});
-
-extend("min", {
-  ...min
-});
-
-extend("max", {
-  ...max
+extend("email", {
+  ...email
 });

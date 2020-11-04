@@ -1,5 +1,5 @@
 <template>
-  <div class="UiBtn" @click="$emit('click')">
+  <div class="ui-btn" @click="$emit('click')">
     <slot></slot>
   </div>
 </template>
@@ -11,7 +11,7 @@ export default {
 </script>
 
 <style lang="scss">
-.UiBtn {
+.ui-btn {
   padding: 15px;
   background: #5977ea;
   color: #ffffff;

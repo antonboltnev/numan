@@ -55,7 +55,7 @@
         <ui-grid-col size-w="100">
           <validation-provider
             v-slot="{ errors }"
-            :rules="{ required: true }"
+            :rules="{ required: true, email: true }"
             name="E-mail"
             mode="eager"
           >
@@ -91,8 +91,8 @@ export default {
     email: null,
   }),
   methods: {
-    ...mapActions(["setFlowEvent"]),
-    ...mapMutations(["SET_FLOW_DATA_TO_STORE"]),
+    ...mapActions("CommonStore", ["setFlowEvent"]),
+    ...mapMutations("CommonStore", ["SET_FLOW_DATA_TO_STORE"]),
     clearInputValue(name) {
       this[name] = null;
     },

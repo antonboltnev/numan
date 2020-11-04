@@ -14,6 +14,7 @@
         :key="product.id"
       >
         <ui-card
+            id="product-card"
           :class="{ default: product.default }"
           @click.native="selectProduct(product)"
         >
@@ -69,13 +70,13 @@ export default {
     localProducts: [],
   }),
   computed: {
-    ...mapState({
+    ...mapState("CommonStore",{
       products: (state) => state.products,
     }),
   },
   methods: {
-    ...mapActions(["setFlowEvent"]),
-    ...mapMutations(["SET_FLOW_DATA_TO_STORE"]),
+    ...mapActions("CommonStore", ["setFlowEvent"]),
+    ...mapMutations("CommonStore", ["SET_FLOW_DATA_TO_STORE"]),
     getProductList() {
       let localProducts = [];
       //searching for products in selected category
@@ -203,7 +204,7 @@ export default {
 <style lang="scss">
 .ProductList {
   &__item {
-    max-height: 250px;
+    max-height: 400px;
     overflow-y: auto;
     cursor: pointer;
   }

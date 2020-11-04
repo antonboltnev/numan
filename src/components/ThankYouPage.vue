@@ -20,6 +20,5 @@ export default {
 </script>
 
 <style lang="scss">
-.ThankYouPage {
-}
+.ThankYouPage {}
 </style>

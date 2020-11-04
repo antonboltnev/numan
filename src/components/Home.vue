@@ -17,7 +17,7 @@ import { mapActions } from "vuex";
 export default {
   name: "Main",
   methods: {
-    ...mapActions(["setFlowEvent"]),
+    ...mapActions("CommonStore", ["setFlowEvent"]),
     toCategories() {
       this.setFlowEvent({
         event: "user-started-flow",

@@ -1,6 +1,9 @@
 export default {
   userId: null,
-  products: {},
+  products: {
+    data: [],
+    included: []
+  },
   totalPathData: {
     category: null,
     selectedProduct: null,

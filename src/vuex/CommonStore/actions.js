@@ -11,22 +11,38 @@ export default {
     return new axios.get(baseUrl + "v1/product_categories")
       .then((res) => {
         commit("SET_PRODUCT_DATA", res.data);
+        commit(
+          "Notifications/ADD_ITEM_NOTIFICATION",
+          {
+            type: "success",
+            message: "Fetch success!",
+          },
+          { root: true }
+        );
         return res.data;
       })
       .catch((err) => {
+        commit(
+          "Notifications/ADD_ITEM_NOTIFICATION",
+          {
+            type: "error",
+            message: err.detail || err,
+          },
+          { root: true }
+        );
         return err;
       });
   },
   setCategory({ commit }, category) {
     commit("SELECT_CATEGORY", category);
   },
-  setFlowEvent(context, { event, payload }) {
-    if (!context.state.userId) {
-      context.dispatch("generateUserId");
+  setFlowEvent({ commit, dispatch, state }, { event, payload }) {
+    if (!state.userId) {
+      dispatch("generateUserId");
     }
     return axios
       .post(baseUrl + "v1/events", {
-        user_id: context.state.userId,
+        user_id: state.userId,
         data: payload,
         type: event,
       })
@@ -34,6 +50,14 @@ export default {
         return res;
       })
       .catch((err) => {
+        commit(
+          "Notifications/ADD_ITEM_NOTIFICATION",
+          {
+            type: "error",
+            message: err.detail || err,
+          },
+          { root: true }
+        );
         return err;
       });
   },

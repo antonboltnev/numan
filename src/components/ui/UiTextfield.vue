@@ -1,7 +1,7 @@
 <template>
   <ui-grid
-    class="UiTextfield align-center ui-ma_0"
-    :class="{ UiTextfield__has_error: $props.errors.length > 0 }"
+    class="ui-textfield align-center ui-ma_0"
+    :class="{ 'ui-textfield__has_error': $props.errors.length > 0 }"
   >
     <ui-grid-col size-w="auto">
       <input
@@ -16,9 +16,9 @@
     </ui-grid-col>
     <ui-grid-col size-w="100">
       <div
-        class="UiTextfield__messages"
+        class="ui-textfield__messages"
         :class="{
-          UiTextfield__messages_error: $props.errors.length > 0,
+          'ui-textfield__messages_error': $props.errors.length > 0,
         }"
       >
         <small>
@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style lang="scss">
-.UiTextfield {
+.ui-textfield {
   border-radius: 10px;
   border: solid 1px #b9b9b9;
   position: relative;
