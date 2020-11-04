@@ -4,9 +4,8 @@ import VueRouter from "vue-router";
 import "@vue/test-utils";
 import { createLocalVue, shallowMount } from "@vue/test-utils";
 
-import state from "@/vuex/state";
-import mutations from "@/vuex/mutations";
-import actions from "@/vuex/actions";
+import CommonStore from "@/vuex/CommonStore";
+import NotificationsStore from "@/vuex/Notifications";
 
 Vue.use(Vuex);
 
@@ -45,14 +44,29 @@ export function testFactory(cmp, options) {
 
   let optionsStore = options && options.store ? options.store : tempStore;
 
-  localStore.state = state;
-  localStore.mutations = mutations;
-  localStore.actions = actions;
+  localStore.state = CommonStore.state;
+  localStore.mutations = CommonStore.mutations;
+  localStore.actions = CommonStore.actions;
 
-  let store = new Vuex.Store({
+  let storeMain = {
+    namespaced: true,
     state: { ...localStore.state, ...optionsStore.state },
     mutations: { ...localStore.mutations, ...optionsStore.mutations },
     actions: { ...localStore.actions, ...optionsStore.actions },
+  };
+
+  let storeNotifications = {
+    namespaced: true,
+    state: { ...NotificationsStore.state, ...optionsStore.state },
+    mutations: { ...NotificationsStore.mutations, ...optionsStore.mutations },
+    actions: { ...NotificationsStore.actions, ...optionsStore.actions },
+  };
+
+  let store = new Vuex.Store({
+    modules: {
+      Notifications: storeNotifications,
+      CommonStore: storeMain,
+    },
   });
 
   let optionsValidate = {
